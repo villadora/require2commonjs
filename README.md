@@ -10,6 +10,26 @@ $ npm install require2commonjs --save
 
 ## Usage
 
+``` bash
+r2cjs [options] files
+```
+
+
+### Convert one file
+
+
+``` bash
+r2cjs rq.js >  common.js
+
+# or
+
+r2cjs rq.js  -o common.js
+```
+
+
+
+## APIs
+
 ```js
 var require2commonjs = require('require2commonjs');
 ```
