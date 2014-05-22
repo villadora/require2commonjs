@@ -11,6 +11,8 @@ if (argv.version || argv.v) {
   process.exit(0);
 }
 
+var cwd = process.cwd();
+
 var files = argv._;
 
 if (!files || !files.length) {
@@ -21,19 +23,20 @@ if (!files || !files.length) {
 // handl one file now
 var file = files[0];
 
-var cwd = process.cwd();
+file = path.resolve(cwd, file);
+
 
 var output = argv.output || argv.o;
 var destDir = argv.dest;
 
 var r2c = require('../lib');
 
-if (destDir) {
-  fs.statSync(path.resolve(cwd, destDir), function(err, stat) {
+// if (destDir) {
+//   fs.statSync(path.resolve(cwd, destDir), function(err, stat) {
 
-  });
-}
+//   });
+// }
 
-var output = r2c(fs.readFileSync(file, 'utf8'), {});
+var output = r2c(file, {});
 
 console.log(output);
