@@ -23,7 +23,7 @@ r2cjs rq.js >  common.js
 
 # or
 
-r2cjs rq.js  -o common.js
+r2cjs rq.js -o common.js
 ```
 
 

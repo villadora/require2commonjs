@@ -1,6 +1,6 @@
 {
   "name": "require2commonjs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Convert requireJs AMD Module into CommonJS ",
   "main": "./lib/index.js",
   "scripts": {
@@ -14,7 +14,9 @@
     "url": "git://github.com/villadora/require2commonjs.git"
   },
   "keywords": [
-    "AMD", "CommonJs", "requirejs"
+    "AMD",
+    "CommonJs",
+    "requirejs"
   ],
   "engines": {
     "node": ">=0.8.0"
@@ -33,6 +35,7 @@
     "escope": "^1.0.1",
     "minimist": "^0.1.0",
     "escodegen": "^1.3.2",
-    "estraverse": "^1.5.0"
+    "estraverse": "^1.5.0",
+    "amd-parser": "^0.1.0"
   }
 }

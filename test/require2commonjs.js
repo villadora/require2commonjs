@@ -1,4 +1,6 @@
 'use strict';
 
-var expect = require('chai').expect;
-var require2commonjs = require('../');
+var esprima = require('esprima');
+
+var r2c = require('../');
+
