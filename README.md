@@ -1,4 +1,6 @@
-# require2commonjs [![NPM version](https://badge.fury.io/js/require2commonjs.svg)](http://badge.fury.io/js/require2commonjs) [![Build Status](https://travis-ci.org/villadora/require2commonjs.svg?branch=master)](https://travis-ci.org/villadora/require2commonjs) [![Dependency Status](https://gemnasium.com/villadora/require2commonjs.svg)](https://gemnasium.com/villadora/require2commonjs)
+# require2commonjs
+
+[![NPM version](https://badge.fury.io/js/require2commonjs.svg)](http://badge.fury.io/js/require2commonjs) [![Build Status](https://travis-ci.org/villadora/require2commonjs.svg?branch=master)](https://travis-ci.org/villadora/require2commonjs) [![Dependency Status](https://gemnasium.com/villadora/require2commonjs.svg)](https://gemnasium.com/villadora/require2commonjs)
 
 <!-- description -->
 
