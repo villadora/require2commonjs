@@ -5,10 +5,15 @@ var fs = require('fs');
 
 var argv = require('minimist')(process.argv.slice(2));
 
-
 if (argv.version || argv.v) {
   var pkg = require('../package.json');
-  process.stdout.write([pkg.name, 'v' + pkg.version].join(' ') + "\n");
+  process.stdout.write('v' + pkg.version + "\n");
+  process.exit(0);
+}
+
+
+if (argv.help || argv.h) {
+  console.log("Usage: r2cjs [--root <root path>] [--baseUrl <baseUrl for requirejs>] [-o|--output <path of output file>] file");
   process.exit(0);
 }
 
@@ -48,32 +53,60 @@ if (typeof apath == 'string') {
 
 
 var baseUrl = argv.baseUrl || '.';
-
-var root = argv.root;
-if (root) root = path.join(cwd, root);
-
-// handl one file now
-var file = files[0];
-
-file = path.resolve(cwd, file);
-
-
-
-var output = argv.output || argv.o;
 var destDir = argv.dest;
+var root = argv.root;
+
+if (root) root = path.resolve(cwd, root);
+
 
 var r2c = require('../lib');
 
-// if (destDir) {
-//   fs.statSync(path.resolve(cwd, destDir), function(err, stat) {
+if (files.length === 1) {
+  // handl one file now
+  var file = files[0];
 
-//   });
-// }
+  file = path.resolve(cwd, file);
 
-var output = r2c(file, {
-  root: root,
-  baseUrl: baseUrl,
-  paths: paths
-});
+  var outputFile = argv.output || argv.o;
 
-console.log(output);
+
+  if (!outputFile) {
+    if (destDir) {
+      outputFile = path.resolve(destDir, path.relative(root || path.dirname(file), file));
+    }
+  }
+
+  var output = r2c(file, {
+    root: root,
+    baseUrl: baseUrl,
+    paths: paths
+  });
+
+  if (!outputFile) {
+    console.log(output);
+  } else {
+    fs.writeFileSync(path.resolve(cwd, outputFile), output, 'utf8');
+  }
+} else {
+  if (destDir) destDir = path.resolve(cwd, destDir);
+  else {
+    console.error('Dest directory must be given when more than one file provided');
+    process.exit(1);
+  }
+
+  root = root || cwd;
+
+  files.map(function(f) {
+    return path.resolve(cwd, f);
+  }).forEach(function(file) {
+    var outputFile = path.resolve(destDir, path.relative(root, file));
+
+    var output = r2c(file, {
+      root: root,
+      baseUrl: baseUrl,
+      paths: paths
+    });
+
+    fs.writeFileSync(outputFile, output, 'utf8');
+  });
+}

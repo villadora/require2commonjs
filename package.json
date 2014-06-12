@@ -1,6 +1,6 @@
 {
   "name": "require2commonjs",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Convert requireJs AMD Module into CommonJS ",
   "main": "./lib/index.js",
   "scripts": {
